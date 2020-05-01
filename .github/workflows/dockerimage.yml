@@ -10,7 +10,7 @@ jobs:
       - name: Build the Docker image
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: beatcovid/export/export
+          name: beatcovid/geoprocess/geoprocess
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
