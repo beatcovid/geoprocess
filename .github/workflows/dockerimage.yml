@@ -1,0 +1,17 @@
+name: Build and push docker image
+on:
+  push:
+    branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: beatcovid/export/export
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          cache: true
