@@ -30,4 +30,4 @@ WORKDIR /code
 RUN mkdir -p /var/cache
 
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
-CMD huey_consumer export.tasks
+CMD huey_consumer geoprocess.scheduler.huey
