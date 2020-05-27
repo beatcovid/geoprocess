@@ -68,8 +68,9 @@ def update_geoplots():
         for place_field in place_fields:
             if place_field in a:
 
-                # @todo better checking of place_id
-                # and passing
+                if not type(a[place_field]) is str:
+                    continue
+
                 if " " in a[place_field]:
                     continue
 
@@ -124,6 +125,8 @@ def update_geoplots():
 
                 p_flat["_geo_processed"] = True
 
+                pprint(p_flat)
+
                 try:
                     db.update_one(
                         {"_id": a["_id"]}, {"$set": p_flat},
@@ -144,4 +147,4 @@ def update_geoplots():
 
         processed += 1
 
-    logger.info("Processed {} and updated {}".format(processed, updated))
+    print("Processed {} and updated {}".format(processed, updated))
