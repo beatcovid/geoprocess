@@ -1,4 +1,4 @@
 import logging
 
 logging.basicConfig(level=logging.INFO,)
-logger = logging.getLogger("beatcovid.exporter")
+logger = logging.getLogger("beatcovid.geoprocess")
