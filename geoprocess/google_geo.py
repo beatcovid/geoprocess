@@ -15,9 +15,12 @@ import requests_cache
 
 from geoprocess.settings import GOOGLE_PLACES_API_KEY
 
+from .settings import CACHE_PATH
+
 logging.basicConfig(level=logging.INFO)
 
-requests_cache.install_cache("/var/cache/.google", expire_after=timedelta(days=60))
+
+requests_cache.install_cache(CACHE_PATH, expire_after=timedelta(days=60))
 
 BACKOFF_TIME = 30
 QUERY_LIMIT = 0
