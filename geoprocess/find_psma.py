@@ -1,66 +1,75 @@
+import logging
+import os
+
 import geopandas as gpd
 from shapely.geometry import Point
+
+from .settings import BASE_PATH
+
+logger = logging.getLogger("geoprocess.find_psma")
+
+
+def read_shape(shape_path):
+    shape_path = os.path.join(BASE_PATH, shape_path)
+
+    if not os.path.isfile(shape_path):
+        logger.error("Could not find shape {}".format(shape_path))
+        return None
+
+    return gpd.read_file(shape_path)
+
 
 LGA = [
     {
         "state": "NSW",
-        "shape": gpd.read_file("data/LGA2019/Standard/NSW_LGA_POLYGON_shp.shx"),
+        "shape": read_shape("data/LGA2019/Standard/NSW_LGA_POLYGON_shp.shx"),
     },
     {
         "state": "QLD",
-        "shape": gpd.read_file("data/LGA2019/Standard/QLD_LGA_POLYGON_shp.shx"),
+        "shape": read_shape("data/LGA2019/Standard/QLD_LGA_POLYGON_shp.shx"),
     },
     {
         "state": "VIC",
-        "shape": gpd.read_file("data/LGA2019/Standard/VIC_LGA_POLYGON_shp.shx"),
+        "shape": read_shape("data/LGA2019/Standard/VIC_LGA_POLYGON_shp.shx"),
     },
-    {
-        "state": "NT",
-        "shape": gpd.read_file("data/LGA2019/Standard/NT_LGA_POLYGON_shp.shx"),
-    },
+    {"state": "NT", "shape": read_shape("data/LGA2019/Standard/NT_LGA_POLYGON_shp.shx"),},
     {
         "state": "TAS",
-        "shape": gpd.read_file("data/LGA2019/Standard/TAS_LGA_POLYGON_shp.shx"),
+        "shape": read_shape("data/LGA2019/Standard/TAS_LGA_POLYGON_shp.shx"),
     },
-    {
-        "state": "SA",
-        "shape": gpd.read_file("data/LGA2019/Standard/SA_LGA_POLYGON_shp.shx"),
-    },
-    {
-        "state": "WA",
-        "shape": gpd.read_file("data/LGA2019/Standard/WA_LGA_POLYGON_shp.shx"),
-    },
+    {"state": "SA", "shape": read_shape("data/LGA2019/Standard/SA_LGA_POLYGON_shp.shx"),},
+    {"state": "WA", "shape": read_shape("data/LGA2019/Standard/WA_LGA_POLYGON_shp.shx"),},
 ]
 
 
 SA3 = [
     {
         "state": "NSW",
-        "shape": gpd.read_file("data/2016ABS/Standard/NSW_SA3_2016_POLYGON_shp.shx"),
+        "shape": read_shape("data/2016ABS/Standard/NSW_SA3_2016_POLYGON_shp.shx"),
     },
     {
         "state": "QLD",
-        "shape": gpd.read_file("data/2016ABS/Standard/QLD_SA3_2016_POLYGON_shp.shx"),
+        "shape": read_shape("data/2016ABS/Standard/QLD_SA3_2016_POLYGON_shp.shx"),
     },
     {
         "state": "VIC",
-        "shape": gpd.read_file("data/2016ABS/Standard/VIC_SA3_2016_POLYGON_shp.shx"),
+        "shape": read_shape("data/2016ABS/Standard/VIC_SA3_2016_POLYGON_shp.shx"),
     },
     {
         "state": "NT",
-        "shape": gpd.read_file("data/2016ABS/Standard/NT_SA3_2016_POLYGON_shp.shx"),
+        "shape": read_shape("data/2016ABS/Standard/NT_SA3_2016_POLYGON_shp.shx"),
     },
     {
         "state": "TAS",
-        "shape": gpd.read_file("data/2016ABS/Standard/TAS_SA3_2016_POLYGON_shp.shx"),
+        "shape": read_shape("data/2016ABS/Standard/TAS_SA3_2016_POLYGON_shp.shx"),
     },
     {
         "state": "SA",
-        "shape": gpd.read_file("data/2016ABS/Standard/SA_SA3_2016_POLYGON_shp.shx"),
+        "shape": read_shape("data/2016ABS/Standard/SA_SA3_2016_POLYGON_shp.shx"),
     },
     {
         "state": "WA",
-        "shape": gpd.read_file("data/2016ABS/Standard/WA_SA3_2016_POLYGON_shp.shx"),
+        "shape": read_shape("data/2016ABS/Standard/WA_SA3_2016_POLYGON_shp.shx"),
     },
 ]
 
